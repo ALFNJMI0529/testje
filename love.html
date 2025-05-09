@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Do you love me?</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: #ffe6e6;
+      font-family: Arial, sans-serif;
+      text-align: center;
+      overflow: hidden;
+    }
+
+    .container {
+      position: relative;
+      top: 100px;
+    }
+
+    img {
+      width: 150px;
+      height: 150px;
+      object-fit: cover;
+      margin-bottom: 20px;
+    }
+
+    h1 {
+      font-size: 28px;
+      margin: 10px 0;
+    }
+
+    .emoji {
+      font-size: 28px;
+      vertical-align: middle;
+    }
+
+    p {
+      font-size: 18px;
+      margin: 10px 0 30px;
+    }
+
+    .buttons {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+    }
+
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+      transition: all 0.3s ease;
+    }
+
+    #noBtn {
+      position: absolute;
+      top: 300px;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    .floating-heart {
+      position: absolute;
+      top: 100vh;
+      font-size: 24px;
+      animation: flyUp 4s ease-in forwards;
+    }
+
+    @keyframes flyUp {
+      0% {
+        transform: translateY(0) scale(1);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-100vh) scale(1.5);
+        opacity: 0;
+      }
+    }
+  </style>
+
+  <script>
+    function sayYes() {
+      alert("Yes. you are right!");
+
+      // Tukar latar belakang
+      document.body.style.backgroundColor = "#ffccdd";
+
+      // Teks cinta di tengah
+      const loveMsg = document.createElement('div');
+      loveMsg.innerHTML = "I love you too! 💖";
+      loveMsg.style.position = "absolute";
+      loveMsg.style.top = "50%";
+      loveMsg.style.left = "50%";
+      loveMsg.style.transform = "translate(-50%, -50%)";
+      loveMsg.style.fontSize = "32px";
+      loveMsg.style.fontWeight = "bold";
+      loveMsg.style.color = "#d10068";
+      loveMsg.style.zIndex = "9999";
+      document.body.appendChild(loveMsg);
+
+      // Tambah emoji hati ❤️
+      for (let i = 0; i < 20; i++) {
+        const heart = document.createElement("div");
+        heart.innerHTML = "❤️";
+        heart.classList.add("floating-heart");
+        heart.style.left = Math.random() * window.innerWidth + "px";
+        heart.style.animationDelay = Math.random() * 2 + "s";
+        document.body.appendChild(heart);
+      }
+    }
+
+    function moveNoBtn() {
+      const btn = document.getElementById('noBtn');
+      const width = window.innerWidth - 100;
+      const height = window.innerHeight - 100;
+      const newTop = Math.floor(Math.random() * height);
+      const newLeft = Math.floor(Math.random() * width);
+      btn.style.top = newTop + 'px';
+      btn.style.left = newLeft + 'px';
+    }
+
+    function clickedNo() {
+      alert("NOT FOUND");
+    }
+  </script>
+</head>
+
+<body>
+  <div class="container">
+    <img src="cute.jpg" alt="Cute panda">
+    <h1><strong>HIII!</strong> <span class="emoji">❤️</span></h1>
+    <p>Do you love me?</p>
+    <div class="buttons">
+      <button onclick="sayYes()">Yes</button>
+    </div>
+  </div>
+  <button id="noBtn" onmouseover="moveNoBtn()" onclick="clickedNo()">No</button>
+</body>
+</html>
